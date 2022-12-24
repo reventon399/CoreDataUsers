@@ -13,6 +13,8 @@
 		916D3127293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 916D3125293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld */; };
 		916D3129293E050400FA9C87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 916D3128293E050400FA9C87 /* Assets.xcassets */; };
 		916D312C293E050400FA9C87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916D312A293E050400FA9C87 /* LaunchScreen.storyboard */; };
+		919B11BD295788AE00C1688F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 919B11BC295788AE00C1688F /* SnapKit */; };
+		919B11BF2957A0AC00C1688F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919B11BE2957A0AC00C1688F /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		916D3128293E050400FA9C87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		916D312B293E050400FA9C87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		916D312D293E050400FA9C87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		919B11BE2957A0AC00C1688F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				919B11BD295788AE00C1688F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +81,7 @@
 			children = (
 				916D3135293E09DE00FA9C87 /* App */,
 				916D3120293E04FB00FA9C87 /* ViewController.swift */,
+				919B11BE2957A0AC00C1688F /* DetailViewController.swift */,
 				916D3125293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld */,
 			);
 			path = Sources;
@@ -107,6 +112,9 @@
 			dependencies = (
 			);
 			name = CoreDataUsers;
+			packageProductDependencies = (
+				919B11BC295788AE00C1688F /* SnapKit */,
+			);
 			productName = CoreDataUsers;
 			productReference = 916D3119293E04FB00FA9C87 /* CoreDataUsers.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +143,9 @@
 				Base,
 			);
 			mainGroup = 916D3110293E04FB00FA9C87;
+			packageReferences = (
+				919B11BB295788AE00C1688F /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 916D311A293E04FB00FA9C87 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -163,6 +174,7 @@
 			files = (
 				916D3121293E04FB00FA9C87 /* ViewController.swift in Sources */,
 				916D311D293E04FB00FA9C87 /* AppDelegate.swift in Sources */,
+				919B11BF2957A0AC00C1688F /* DetailViewController.swift in Sources */,
 				916D311F293E04FB00FA9C87 /* SceneDelegate.swift in Sources */,
 				916D3127293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld in Sources */,
 			);
@@ -374,6 +386,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		919B11BB295788AE00C1688F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		919B11BC295788AE00C1688F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 919B11BB295788AE00C1688F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		916D3125293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld */ = {
