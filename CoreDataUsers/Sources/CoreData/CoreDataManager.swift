@@ -33,7 +33,6 @@ final class CoreDataManager {
         } catch let error {
             print(error)
         }
-        
         return personsArray
     }
     
