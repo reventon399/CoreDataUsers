@@ -26,7 +26,7 @@ final class CoreDataManager {
     
     func fetchUsers() -> [Person] {
         var personsArray: [Person] = []
-        var context = persistantContainer.viewContext
+        let context = persistantContainer.viewContext
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
         do {
             personsArray = try context.fetch(fetchRequest)

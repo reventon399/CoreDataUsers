@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     private var names = ["Ivan Petrov", "John Smith", "Igor Smirnov"]
     
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         names.count
