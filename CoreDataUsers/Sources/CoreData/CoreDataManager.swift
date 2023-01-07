@@ -12,6 +12,8 @@ final class CoreDataManager {
     
     static let shared = CoreDataManager()
     
+    private init() {}
+    
     lazy var persistantContainer: NSPersistentContainer = {
        let container = NSPersistentContainer(name: "CoreDataUsers")
         container.loadPersistentStores { description, error in
@@ -33,5 +35,16 @@ final class CoreDataManager {
         }
         
         return personsArray
+    }
+    
+    func saveContext() {
+        let context = persistantContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error {
+                print(error)
+            }
+        }
     }
 }
