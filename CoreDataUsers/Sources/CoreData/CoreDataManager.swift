@@ -15,7 +15,7 @@ final class CoreDataManager {
     private init() {}
     
     lazy var persistantContainer: NSPersistentContainer = {
-       let container = NSPersistentContainer(name: "CoreDataUsers")
+        let container = NSPersistentContainer(name: "CoreDataUsers")
         container.loadPersistentStores { description, error in
             if let error = error {
                 print(error)
