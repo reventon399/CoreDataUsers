@@ -113,6 +113,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
+        setupAvailability()
         setupLayout()
         setupNavigationBar()
     }
@@ -129,6 +130,33 @@ class DetailViewController: UIViewController {
         view.addSubview(dateTextField)
     }
     
+    private func setupAvailability() {
+        switch isEnabled {
+        case true:
+            nameTextField.isEnabled = true
+            genderTextField.isEnabled = true
+            dateTextField.isEnabled = true
+            imageButton.isEnabled = true
+            editButton.setImage(UIImage(systemName: "Save"), for: .normal)
+        case false:
+            nameTextField.isEnabled = false
+            genderTextField.isEnabled = false
+            dateTextField.isEnabled = false
+            imageButton.isEnabled = false
+            editButton.setImage(UIImage(systemName: "Edit"), for: .normal)
+        }
+    }
+    
+    private func setupNavigationBar() {
+        view.backgroundColor = .white
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .edit,
+            target: self,
+            action: nil
+        )
+    }
+
     private func setupLayout() {
         backAndEditButtonsStack.snp.makeConstraints { make in
             make.centerY.equalTo(view).multipliedBy(0.3)
@@ -167,17 +195,7 @@ class DetailViewController: UIViewController {
             make.height.equalTo(48)
         }
     }
-    
-    private func setupNavigationBar() {
-        view.backgroundColor = .white
-        self.navigationItem.hidesBackButton = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .edit,
-            target: self,
-            action: nil
-        )
-    }
-    
+
     // MARK: - Actions
     
     @objc private func backButtonPressed() {
@@ -229,7 +247,7 @@ extension DetailViewController: UINavigationControllerDelegate {
 extension DetailViewController: DetailViewProtocol {
    
     func setupDetailView(name: String, gender: String?, dateOfBirth: Date?, image: Data?) {
-        <#code#>
+        
     }
     
     
