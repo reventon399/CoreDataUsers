@@ -47,4 +47,30 @@ final class CoreDataManager {
             }
         }
     }
+    
+    // TODO: change to addNewPerson
+    func savePerson(personName: String) {
+        let context = persistantContainer.viewContext
+        let personObject = Person(context: context)
+        personObject.name = personName
+        saveContext()
+    }
+    
+    func deletePerson(person: Person) {
+        persistantContainer.viewContext.delete(person)
+        saveContext()
+    }
+    
+    func updatePerson(with name: String, dateOfBirth: Date?, gender: String, image: Data?) {
+        let fetchRequest = NSFetchRequest<Person>(entityName: "Person")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        if let persons = try? persistantContainer.viewContext.fetch(fetchRequest), !persons.isEmpty {
+            guard let updatingPerson = persons.first else { return }
+            updatingPerson.setValue(name, forKey: "name")
+            updatingPerson.setValue(dateOfBirth, forKey: "dateOfBirth")
+            updatingPerson.setValue(gender, forKey: "gender")
+            updatingPerson.setValue(image, forKey: "image")
+            try? persistantContainer.viewContext.save()
+        }
+    }
 }
