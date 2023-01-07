@@ -24,7 +24,7 @@ class ModuleBuilder: BuilderProtocol {
     func createDetailModule(person: Person, router: RouterProtocol) -> UIViewController {
         let person = person
         let view = DetailViewController()
-        let presenter = DetailePresenter(view: view, person: person, router: router)
+        let presenter = DetailPresenter(person: person, view: view, router: router)
         view.presenter = presenter
         return view
     }
