@@ -199,19 +199,40 @@ class DetailViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func backButtonPressed() {
-        
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let date = dateFormatter.date(from: dateTextField.text ?? "")
+        presenter?.updateData(name: nameTextField.text ?? "",
+                              gender: genderTextField.text,
+                              dateOfBirth: date,
+                              image: imageButton.imageView?.image?.pngData())
+        presenter?.returnToMainView()
     }
     
     @objc private func editButtonPressed() {
-        
+        isEnabled.toggle()
+        setupAvailability()
+        if !isEnabled {
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let date = dateFormatter.date(from: dateTextField.text ?? "")
+            presenter?.updateData(name: nameTextField.text ?? "",
+                                  gender: genderTextField.text,
+                                  dateOfBirth: date,
+                                  image: imageButton.imageView?.image?.pngData())
+        }
     }
     
     @objc private func imageButtonPressed() {
-        
+        let viewController = UIImagePickerController()
+        viewController.allowsEditing = true
+        viewController.sourceType = .photoLibrary
+        viewController.delegate = self
+        present(viewController, animated: true)
     }
     
     @objc private func doneButtonPressed() {
-        
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateTextField.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
 }
 
@@ -236,18 +257,32 @@ extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
 }
 
-extension DetailViewController: UIImagePickerControllerDelegate {
-    
-}
+extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            imageButton.setImage(image, for: .normal)
+        }
+        picker.dismiss(animated: true)
+    }
 
-extension DetailViewController: UINavigationControllerDelegate {
-    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
 }
 
 extension DetailViewController: DetailViewProtocol {
    
     func setupDetailView(name: String, gender: String?, dateOfBirth: Date?, image: Data?) {
+        self.nameTextField.text = name
+        self.genderTextField.text = gender
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         
+        guard let date = dateOfBirth else { return }
+        self.dateTextField.text = dateFormatter.string(from: date)
+        
+        guard let image = image else { return }
+        
+        self.imageButton.setImage(UIImage(data: image), for: .normal)
     }
     
     
