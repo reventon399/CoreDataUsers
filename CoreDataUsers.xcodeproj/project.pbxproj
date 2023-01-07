@@ -17,6 +17,7 @@
 		916D312C293E050400FA9C87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916D312A293E050400FA9C87 /* LaunchScreen.storyboard */; };
 		919A5FA429696D8C004E3C4A /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A5FA229696D8C004E3C4A /* Person+CoreDataClass.swift */; };
 		919A5FA529696D8C004E3C4A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A5FA329696D8C004E3C4A /* Person+CoreDataProperties.swift */; };
+		919A5FA829697061004E3C4A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A5FA729697061004E3C4A /* CoreDataManager.swift */; };
 		919B11BD295788AE00C1688F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 919B11BC295788AE00C1688F /* SnapKit */; };
 		919B11BF2957A0AC00C1688F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919B11BE2957A0AC00C1688F /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		916D312D293E050400FA9C87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		919A5FA229696D8C004E3C4A /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		919A5FA329696D8C004E3C4A /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		919A5FA729697061004E3C4A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		919B11BE2957A0AC00C1688F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +138,7 @@
 				919A5FA229696D8C004E3C4A /* Person+CoreDataClass.swift */,
 				919A5FA329696D8C004E3C4A /* Person+CoreDataProperties.swift */,
 				916D3125293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld */,
+				919A5FA729697061004E3C4A /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				913C2792295F5AC00040D9CE /* Router.swift in Sources */,
 				916D311F293E04FB00FA9C87 /* SceneDelegate.swift in Sources */,
 				916D3127293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld in Sources */,
+				919A5FA829697061004E3C4A /* CoreDataManager.swift in Sources */,
 				913C2790295F5AB40040D9CE /* ModuleBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
