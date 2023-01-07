@@ -10,7 +10,7 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
-    private var names = ["Ivan Petrov", "John Smith", "Igor Smirnov"]
+    var presenter: MainPresenterProtocol?
     
     // MARK: - Outlets
     
@@ -49,21 +49,22 @@ class MainViewController: UIViewController {
         return stack
     }()
     
-    
-    
     //MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Users"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        setupNavigationBar()
         setupHierarchy()
         setupLayout()
     }
-
     
     // MARK: - Setup
+    
+    private func setupNavigationBar() {
+        title = "Users"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     
     private func setupHierarchy() {
         view.addSubview(userTextFieldAndAddButtonStack)
@@ -83,41 +84,56 @@ class MainViewController: UIViewController {
         usersTableView.snp.makeConstraints { make in
             make.top.equalTo(userTextFieldAndAddButtonStack.snp.bottom).offset(50)
             make.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
-//            make.right.bottom.left.equalTo(view)
         }
     }
-
+    
     // MARK: - Actions
     
     @objc private func addButtonPressed() {
-        
+        guard let name = userTextField.text, name != "" else { return showAlert() }
+        presenter?.savePerson(name: name)
+        userTextField.text = ""
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "Empty text field", message: "type name then press button", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "OK!", style: .cancel))
+        self.present(alert, animated: true)
     }
 }
+
+// MARK: - Extensions
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        names.count
+        presenter?.getNumberOfRows() ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = names[indexPath.row]
+        cell.textLabel?.text = presenter?.getName(index: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = DetailViewController()
         tableView.deselectRow(at: indexPath, animated: true)
-        navigationController?.pushViewController(viewController, animated: true)
+        presenter?.showDetailedPerson(index: indexPath)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            names.remove(at: indexPath.row)
+            presenter?.deleteTableViewCell(index: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
         }
+    }
+}
+
+extension MainViewController: MainViewProtocol {
+    func reloadTable() {
+        usersTableView.reloadData()
     }
 }
