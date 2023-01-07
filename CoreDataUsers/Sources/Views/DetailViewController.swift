@@ -65,7 +65,6 @@ class DetailViewController: UIViewController {
         textField.returnKeyType = .done
         textField.borderStyle = .line
         textField.textColor = .black
-        textField.isEnabled = false
         return textField
     }()
     
@@ -80,8 +79,7 @@ class DetailViewController: UIViewController {
         genderPicker.delegate = self
         genderPicker.dataSource = self
         textField.inputView = genderPicker
-        
-        textField.isEnabled = false
+    
         return textField
     }()
     
@@ -105,7 +103,6 @@ class DetailViewController: UIViewController {
         datePicker.maximumDate = Date()
         textField.inputView = datePicker
         
-        textField.isEnabled = false
         return textField
     }()
     // MARK: - Lifecycle
@@ -116,6 +113,7 @@ class DetailViewController: UIViewController {
         setupAvailability()
         setupLayout()
         setupNavigationBar()
+        presenter?.setData()
     }
     
     // MARK: - Setup

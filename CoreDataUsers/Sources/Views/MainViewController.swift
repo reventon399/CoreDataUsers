@@ -53,15 +53,17 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        
         setupNavigationBar()
         setupHierarchy()
         setupLayout()
+        presenter?.fetchUsers()
     }
     
     // MARK: - Setup
     
     private func setupNavigationBar() {
+        view.backgroundColor = .white
         title = "Users"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -117,7 +119,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = DetailViewController()
         tableView.deselectRow(at: indexPath, animated: true)
         presenter?.showDetailedPerson(index: indexPath)
     }
