@@ -22,7 +22,8 @@ class DetailViewController: UIViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .black
-        button.clipsToBounds = true
+//        button.isEnabled = true
+//        button.clipsToBounds = true
         button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
         button.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         return button
@@ -30,6 +31,7 @@ class DetailViewController: UIViewController {
     
     private lazy var editButton: UIButton = {
         let button = UIButton(type: .system)
+//        button.isEnabled = true
         button.setTitle("Edit", for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.backgroundColor = .white
@@ -61,6 +63,7 @@ class DetailViewController: UIViewController {
     
     private lazy var nameTextField: UITextField = {
      let textField = UITextField()
+        textField.isEnabled = false
         textField.placeholder = "Write your name here"
         textField.returnKeyType = .done
         textField.borderStyle = .line
@@ -70,6 +73,7 @@ class DetailViewController: UIViewController {
     
     private lazy var genderTextField: UITextField = {
      let textField = UITextField()
+        textField.isEnabled = false
         textField.placeholder = "Write your gender here"
         textField.returnKeyType = .done
         textField.borderStyle = .line
@@ -85,6 +89,7 @@ class DetailViewController: UIViewController {
     
     private lazy var dateTextField: UITextField = {
         let textField = UITextField()
+        textField.isEnabled = false
         textField.placeholder = "Write your birth date here"
         textField.returnKeyType = .done
         textField.borderStyle = .line
@@ -109,14 +114,19 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         setupHierarchy()
-        setupAvailability()
         setupLayout()
-        setupNavigationBar()
+        setupAvailability()
         presenter?.setData()
     }
     
     // MARK: - Setup
+    
+    private func setupView() {
+        view.backgroundColor = .white
+        self.navigationItem.hidesBackButton = true
+    }
     
     private func setupHierarchy() {
         view.addSubview(backAndEditButtonsStack)
@@ -144,21 +154,12 @@ class DetailViewController: UIViewController {
             editButton.setImage(UIImage(systemName: "Edit"), for: .normal)
         }
     }
-    
-    private func setupNavigationBar() {
-        view.backgroundColor = .white
-        self.navigationItem.hidesBackButton = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .edit,
-            target: self,
-            action: nil
-        )
-    }
 
     private func setupLayout() {
         backAndEditButtonsStack.snp.makeConstraints { make in
-            make.centerY.equalTo(view).multipliedBy(0.3)
-            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).multipliedBy(0.35)
+            make.left.right.equalTo(view).offset(20)
+            make.right.equalTo(view).offset(-20)
             make.width.equalTo(view.snp.width).multipliedBy(0.9)
         }
         
@@ -282,6 +283,4 @@ extension DetailViewController: DetailViewProtocol {
         
         self.imageButton.setImage(UIImage(data: image), for: .normal)
     }
-    
-    
 }
