@@ -30,13 +30,9 @@ class Router: RouterProtocol {
     }
     
     func initialViewController() {
-        if let navigationController = navigationController {
-            if let mainViewController = assemblyBuilder?.createMainModule(router: self) {
-                navigationController.viewControllers = [mainViewController]
-            } else {
-                return
-            }
-        }
+        guard let navigationController = navigationController else { return }
+        guard let mainViewController = assemblyBuilder?.createMainModule(router: self) else { return }
+        navigationController.viewControllers = [mainViewController]
     }
     
     func showDetailedPerson(person: Person) {

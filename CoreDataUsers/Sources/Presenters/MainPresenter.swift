@@ -45,7 +45,7 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func savePerson(name: String) {
-        CoreDataManager.shared.savePerson(personName: name)
+        CoreDataManager.shared.addNewPerson(personName: name)
         fetchUsers()
     }
     
@@ -59,6 +59,4 @@ final class MainPresenter: MainPresenterProtocol {
         guard let person = persons?[index.row] else { return }
         router?.showDetailedPerson(person: person)
     }
-    
-    
 }

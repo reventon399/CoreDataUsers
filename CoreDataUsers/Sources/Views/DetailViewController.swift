@@ -22,8 +22,6 @@ class DetailViewController: UIViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .black
-//        button.isEnabled = true
-//        button.clipsToBounds = true
         button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
         button.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         return button
@@ -31,7 +29,6 @@ class DetailViewController: UIViewController {
     
     private lazy var editButton: UIButton = {
         let button = UIButton(type: .system)
-//        button.isEnabled = true
         button.setTitle("Edit", for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.backgroundColor = .white
@@ -110,6 +107,7 @@ class DetailViewController: UIViewController {
         
         return textField
     }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -253,7 +251,6 @@ extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         genderTextField.text = genders[row]
         genderTextField.resignFirstResponder()
     }
-    
 }
 
 extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

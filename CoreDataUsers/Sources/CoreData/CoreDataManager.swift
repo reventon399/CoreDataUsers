@@ -47,8 +47,7 @@ final class CoreDataManager {
         }
     }
     
-    // TODO: change to addNewPerson
-    func savePerson(personName: String) {
+    func addNewPerson(personName: String) {
         let context = persistantContainer.viewContext
         let personObject = Person(context: context)
         personObject.name = personName

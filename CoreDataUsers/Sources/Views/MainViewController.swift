@@ -34,7 +34,6 @@ class MainViewController: UIViewController {
     
     private lazy var usersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -53,7 +52,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
         setupHierarchy()
         setupLayout()

@@ -142,9 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				919A5FA729697061004E3C4A /* CoreDataManager.swift */,
-				916D3125293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld */,
 				919A5FA229696D8C004E3C4A /* Person+CoreDataClass.swift */,
 				919A5FA329696D8C004E3C4A /* Person+CoreDataProperties.swift */,
+				916D3125293E04FB00FA9C87 /* CoreDataUsers.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
