@@ -266,7 +266,7 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
 }
 
-extension DetailViewController: DetailViewProtocol {
+extension DetailViewController: DetailViewType {
    
     func setupDetailView(name: String, gender: String?, dateOfBirth: Date?, image: Data?) {
         self.nameTextField.text = name

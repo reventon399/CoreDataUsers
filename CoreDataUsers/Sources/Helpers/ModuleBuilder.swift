@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-protocol BuilderProtocol {
+protocol BuilderType {
     func createMainModule(router: RouterProtocol) -> UIViewController
     func createDetailModule(person: Person, router: RouterProtocol) -> UIViewController
 }
 
-class ModuleBuilder: BuilderProtocol {
+final class ModuleBuilder: BuilderType {
     func createMainModule(router: RouterProtocol) -> UIViewController {
         let view = MainViewController()
         let presenter = MainPresenter(view: view, router: router)

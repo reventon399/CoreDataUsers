@@ -131,7 +131,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MainViewController: MainViewProtocol {
+extension MainViewController: MainViewType {
     func reloadTable() {
         usersTableView.reloadData()
     }

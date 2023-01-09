@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MainViewProtocol: AnyObject {
+protocol MainViewType: AnyObject {
     func reloadTable()
 }
 
@@ -23,10 +23,10 @@ protocol MainPresenterProtocol: AnyObject {
 final class MainPresenter: MainPresenterProtocol {
     
     var persons: [Person]?
-    weak var view: MainViewProtocol?
+    weak var view: MainViewType?
     var router: RouterProtocol?
     
-    required init(view: MainViewProtocol, router: RouterProtocol) {
+    required init(view: MainViewType, router: RouterProtocol) {
         self.view = view
         self.router = router
     }

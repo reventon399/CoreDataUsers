@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DetailViewProtocol: AnyObject {
+protocol DetailViewType: AnyObject {
     func setupDetailView(name: String, gender: String?, dateOfBirth: Date?, image: Data?)
 }
 
@@ -20,10 +20,10 @@ protocol DetailPresenterProtocol: AnyObject {
 class DetailPresenter: DetailPresenterProtocol {
     
     var person: Person?
-    weak var view: DetailViewProtocol?
+    weak var view: DetailViewType?
     var router: RouterProtocol?
     
-    required init(person: Person, view: DetailViewProtocol, router: RouterProtocol) {
+    required init(person: Person, view: DetailViewType, router: RouterProtocol) {
         self.person = person
         self.view = view
         self.router = router

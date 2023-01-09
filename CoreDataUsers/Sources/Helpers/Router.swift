@@ -8,23 +8,23 @@
 import Foundation
 import UIKit
 
-protocol RouterMain {
+protocol RouterType {
     var navigationController: UINavigationController? { get set }
-    var assemblyBuilder: BuilderProtocol? { get set }
+    var assemblyBuilder: BuilderType? { get set }
 }
 
-protocol RouterProtocol: RouterMain {
+protocol RouterProtocol: RouterType {
     func initialViewController()
     func showDetailedPerson(person: Person)
     func returnToRoot()
 }
 
-class Router: RouterProtocol {
+final class Router: RouterProtocol {
     
     var navigationController: UINavigationController?
-    var assemblyBuilder: BuilderProtocol?
+    var assemblyBuilder: BuilderType?
     
-    init(navigationController: UINavigationController, assemblyBuilder: BuilderProtocol) {
+    init(navigationController: UINavigationController, assemblyBuilder: BuilderType) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
