@@ -47,8 +47,7 @@ final class CoreDataManager {
         }
     }
     
-    // TODO: change to addNewPerson
-    func savePerson(personName: String) {
+    func addNewPerson(personName: String) {
         let context = persistantContainer.viewContext
         let personObject = Person(context: context)
         personObject.name = personName
@@ -60,7 +59,7 @@ final class CoreDataManager {
         saveContext()
     }
     
-    func updatePerson(with name: String, dateOfBirth: Date?, gender: String, image: Data?) {
+    func updatePerson(name: String, dateOfBirth: Date?, gender: String, image: Data?) {
         let fetchRequest = NSFetchRequest<Person>(entityName: "Person")
         fetchRequest.predicate = NSPredicate(format: "name == %@", name)
         if let persons = try? persistantContainer.viewContext.fetch(fetchRequest), !persons.isEmpty {
