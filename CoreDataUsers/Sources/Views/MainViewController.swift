@@ -19,6 +19,8 @@ class MainViewController: UIViewController {
         textField.placeholder = "Print your name here"
         textField.backgroundColor = .systemGray5
         textField.layer.cornerRadius = 10
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftViewMode = .always
         return textField
     }()
     
