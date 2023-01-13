@@ -30,6 +30,7 @@ class DetailViewController: UIViewController {
     private lazy var editButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Edit", for: .normal)
+        button.setImage(UIImage(named: "placeholder"), for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.backgroundColor = .white
         button.layer.borderColor = UIColor.black.cgColor
@@ -116,7 +117,7 @@ class DetailViewController: UIViewController {
         setupHierarchy()
         setupLayout()
         setupAvailability()
-        presenter?.setData()
+        
     }
     
     // MARK: - Setup
@@ -124,6 +125,8 @@ class DetailViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         self.navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+        presenter?.setData()
     }
     
     private func setupHierarchy() {
@@ -143,22 +146,22 @@ class DetailViewController: UIViewController {
             genderTextField.isEnabled = true
             dateTextField.isEnabled = true
             imageButton.isEnabled = true
-            editButton.setImage(UIImage(systemName: "Save"), for: .normal)
+            editButton.setTitle("Safe", for: .normal)
         case false:
             nameTextField.isEnabled = false
             genderTextField.isEnabled = false
             dateTextField.isEnabled = false
             imageButton.isEnabled = false
-            editButton.setImage(UIImage(systemName: "Edit"), for: .normal)
+            editButton.setTitle("Edit", for: .normal)
         }
     }
 
     private func setupLayout() {
         backAndEditButtonsStack.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(-50)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.left.equalTo(view).offset(20)
             make.right.equalTo(view).offset(-20)
-            make.width.equalTo(view.snp.width).multipliedBy(0.9)
+            make.width.equalTo(50)
         }
         
         editButton.snp.makeConstraints { make in
