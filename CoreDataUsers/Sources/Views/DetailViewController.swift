@@ -30,7 +30,6 @@ class DetailViewController: UIViewController {
     private lazy var editButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Edit", for: .normal)
-        button.setImage(UIImage(named: "placeholder"), for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.backgroundColor = .white
         button.layer.borderColor = UIColor.black.cgColor
@@ -51,6 +50,7 @@ class DetailViewController: UIViewController {
     private lazy var imageButton: UIButton = {
         let button = UIButton()
         button.contentMode = .scaleAspectFit
+        button.setImage(UIImage(named: "placeholder"), for: .normal)
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 70
@@ -59,23 +59,38 @@ class DetailViewController: UIViewController {
         return button
     }()
     
+    // MARK: - TextFields
+    
     private lazy var nameTextField: UITextField = {
      let textField = UITextField()
+        let attributedPlaceholder = NSAttributedString(string: "Write your name here",
+                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder = attributedPlaceholder
         textField.isEnabled = false
-        textField.placeholder = "Write your name here"
-        textField.returnKeyType = .done
-        textField.borderStyle = .line
-        textField.textColor = .black
+        textField.backgroundColor = .systemGray2
+        textField.layer.cornerRadius = 23
+        textField.leftView = UIView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: 15,
+                                                  height: textField.frame.height))
+        textField.leftViewMode = .always
         return textField
     }()
     
     private lazy var genderTextField: UITextField = {
      let textField = UITextField()
+        let attributedPlaceholder = NSAttributedString(string: "Write your gender here",
+                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder = attributedPlaceholder
         textField.isEnabled = false
-        textField.placeholder = "Write your gender here"
         textField.returnKeyType = .done
-        textField.borderStyle = .line
-        textField.textColor = .black
+        textField.backgroundColor = .systemGray2
+        textField.layer.cornerRadius = 23
+        textField.leftView = UIView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: 15,
+                                                  height: textField.frame.height))
+        textField.leftViewMode = .always
         
         let genderPicker = UIPickerView()
         genderPicker.delegate = self
@@ -87,11 +102,19 @@ class DetailViewController: UIViewController {
     
     private lazy var dateTextField: UITextField = {
         let textField = UITextField()
+        let attributedPlaceholder = NSAttributedString(string: "Write your birth date here",
+                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder = attributedPlaceholder
         textField.isEnabled = false
-        textField.placeholder = "Write your birth date here"
         textField.returnKeyType = .done
-        textField.borderStyle = .line
+        textField.backgroundColor = .systemGray2
+        textField.layer.cornerRadius = 23
         textField.textColor = .black
+        textField.leftView = UIView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: 15,
+                                                  height: textField.frame.height))
+        textField.leftViewMode = .always
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()

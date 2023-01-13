@@ -10,7 +10,7 @@ import UIKit
 
 protocol BuilderType {
     func createMainModule(router: RouterProtocol) -> UIViewController
-    func createDetailModule(person: Person, router: RouterProtocol) -> UIViewController
+    func createDetailModule(model: Person, router: RouterProtocol) -> UIViewController
 }
 
 final class ModuleBuilder: BuilderType {
@@ -21,8 +21,8 @@ final class ModuleBuilder: BuilderType {
         return view
     }
     
-    func createDetailModule(person: Person, router: RouterProtocol) -> UIViewController {
-        let person = person
+    func createDetailModule(model: Person, router: RouterProtocol) -> UIViewController {
+        let person = model
         let view = DetailViewController()
         let presenter = DetailPresenter(person: person, view: view, router: router)
         view.presenter = presenter
