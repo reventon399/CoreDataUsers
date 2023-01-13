@@ -155,8 +155,8 @@ class DetailViewController: UIViewController {
 
     private func setupLayout() {
         backAndEditButtonsStack.snp.makeConstraints { make in
-            make.centerY.equalTo(view).multipliedBy(0.35)
-            make.left.right.equalTo(view).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(-50)
+            make.left.equalTo(view).offset(20)
             make.right.equalTo(view).offset(-20)
             make.width.equalTo(view.snp.width).multipliedBy(0.9)
         }
