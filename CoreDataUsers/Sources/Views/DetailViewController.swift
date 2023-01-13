@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     var presenter: DetailPresenterProtocol?
     var datePicker = UIDatePicker()
     var dateFormatter = DateFormatter()
-    var genders = ["male", "female"]
+    var genders = ["Male", "Female"]
     var isEnabled = false
     
     // MARK: - Outlets

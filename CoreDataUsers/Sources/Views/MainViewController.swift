@@ -57,10 +57,14 @@ class MainViewController: UIViewController {
         setupNavigationBar()
         setupHierarchy()
         setupLayout()
-        presenter?.fetchUsers()
+        setupView()
     }
     
     // MARK: - Setup
+    
+    private func setupView() {
+        presenter?.fetchUsers()
+    }
     
     private func setupNavigationBar() {
         view.backgroundColor = .white
