@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     var presenter: DetailPresenterProtocol?
     var datePicker = UIDatePicker()
     var dateFormatter = DateFormatter()
-    var genders = ["male", "female"]
+    var genders = ["Male", "Female"]
     var isEnabled = false
     
     // MARK: - Outlets
@@ -50,6 +50,7 @@ class DetailViewController: UIViewController {
     private lazy var imageButton: UIButton = {
         let button = UIButton()
         button.contentMode = .scaleAspectFit
+        button.setImage(UIImage(named: "placeholder"), for: .normal)
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 70
@@ -58,23 +59,38 @@ class DetailViewController: UIViewController {
         return button
     }()
     
+    // MARK: - TextFields
+    
     private lazy var nameTextField: UITextField = {
      let textField = UITextField()
+        let attributedPlaceholder = NSAttributedString(string: "Write your name here",
+                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder = attributedPlaceholder
         textField.isEnabled = false
-        textField.placeholder = "Write your name here"
-        textField.returnKeyType = .done
-        textField.borderStyle = .line
-        textField.textColor = .black
+        textField.backgroundColor = .systemGray2
+        textField.layer.cornerRadius = 23
+        textField.leftView = UIView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: 15,
+                                                  height: textField.frame.height))
+        textField.leftViewMode = .always
         return textField
     }()
     
     private lazy var genderTextField: UITextField = {
      let textField = UITextField()
+        let attributedPlaceholder = NSAttributedString(string: "Write your gender here",
+                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder = attributedPlaceholder
         textField.isEnabled = false
-        textField.placeholder = "Write your gender here"
         textField.returnKeyType = .done
-        textField.borderStyle = .line
-        textField.textColor = .black
+        textField.backgroundColor = .systemGray2
+        textField.layer.cornerRadius = 23
+        textField.leftView = UIView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: 15,
+                                                  height: textField.frame.height))
+        textField.leftViewMode = .always
         
         let genderPicker = UIPickerView()
         genderPicker.delegate = self
@@ -86,11 +102,19 @@ class DetailViewController: UIViewController {
     
     private lazy var dateTextField: UITextField = {
         let textField = UITextField()
+        let attributedPlaceholder = NSAttributedString(string: "Write your birth date here",
+                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder = attributedPlaceholder
         textField.isEnabled = false
-        textField.placeholder = "Write your birth date here"
         textField.returnKeyType = .done
-        textField.borderStyle = .line
+        textField.backgroundColor = .systemGray2
+        textField.layer.cornerRadius = 23
         textField.textColor = .black
+        textField.leftView = UIView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: 15,
+                                                  height: textField.frame.height))
+        textField.leftViewMode = .always
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -116,7 +140,7 @@ class DetailViewController: UIViewController {
         setupHierarchy()
         setupLayout()
         setupAvailability()
-        presenter?.setData()
+        
     }
     
     // MARK: - Setup
@@ -124,6 +148,8 @@ class DetailViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         self.navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+        presenter?.setData()
     }
     
     private func setupHierarchy() {
@@ -143,22 +169,22 @@ class DetailViewController: UIViewController {
             genderTextField.isEnabled = true
             dateTextField.isEnabled = true
             imageButton.isEnabled = true
-            editButton.setImage(UIImage(systemName: "Save"), for: .normal)
+            editButton.setTitle("Safe", for: .normal)
         case false:
             nameTextField.isEnabled = false
             genderTextField.isEnabled = false
             dateTextField.isEnabled = false
             imageButton.isEnabled = false
-            editButton.setImage(UIImage(systemName: "Edit"), for: .normal)
+            editButton.setTitle("Edit", for: .normal)
         }
     }
 
     private func setupLayout() {
         backAndEditButtonsStack.snp.makeConstraints { make in
-            make.centerY.equalTo(view).multipliedBy(0.35)
-            make.left.right.equalTo(view).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.left.equalTo(view).offset(20)
             make.right.equalTo(view).offset(-20)
-            make.width.equalTo(view.snp.width).multipliedBy(0.9)
+            make.width.equalTo(50)
         }
         
         editButton.snp.makeConstraints { make in

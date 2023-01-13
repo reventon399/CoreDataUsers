@@ -37,7 +37,7 @@ final class Router: RouterProtocol {
     
     func showDetailedPerson(person: Person) {
         guard let navigationController = navigationController else { return }
-        guard let detailedViewController = assemblyBuilder?.createDetailModule(person: person, router: self) else { return }
+        guard let detailedViewController = assemblyBuilder?.createDetailModule(model: person, router: self) else { return }
         navigationController.pushViewController(detailedViewController, animated: true)
     }
     
